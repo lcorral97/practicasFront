@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="localizar()">
+    <div class="form-group">
+        <select class="form-control" formControlName="select">
+            <option *ngFor="let e of empleados" [value]="e.ndiemp">{{e.nomEmp}}</option>
+        </select>
+    </div>
+    <input type="submit" value="Localizar">
+</form>
+<div #map style="width: 500px; height: 500px"></div>  
