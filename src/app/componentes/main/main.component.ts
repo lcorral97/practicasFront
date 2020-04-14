@@ -27,8 +27,7 @@ export class MainComponent implements OnInit {
   empleados: any;
   emp:any;
 
-  constructor(private servicio:ServicioService,
-    private ruta: ActivatedRoute) { 
+  constructor(private servicio:ServicioService) { 
     this.servicio.getEmpleados().subscribe(
       (datos:any) => {
         this.empleados = datos;
@@ -54,9 +53,6 @@ export class MainComponent implements OnInit {
       this.lat = datos.coord.split(",")[0]
       this.long = datos.coord.split(",")[1]
       let defaultLayers = this.platform.createDefaultLayers();
-      console.log(this.mapElement.nativeElement);
-      /*this.mapElement.nativeElement.remove();
-      console.log(this.mapElement.nativeElement);*/
       this.map = new H.Map(this.mapElement.nativeElement,  
         defaultLayers.vector.normal.map, { 
           center: {lat: 0 + +this.lat,

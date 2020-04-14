@@ -7,15 +7,13 @@ import { MainComponent } from './componentes/main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { SelectComponent } from './componentes/select/select.component';
 
 //import { MapModule, MapAPILoader, BingMapAPILoaderConfig, BingMapAPILoader, WindowRef, DocumentRef, MapServiceFactory, BingMapServiceFactory } from 'angular-maps';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    SelectComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
