@@ -1,9 +1,48 @@
-<form [formGroup]="form" (ngSubmit)="localizar()">
-    <div class="form-group">
-        <select class="form-control" formControlName="select">
-            <option *ngFor="let e of empleados" [value]="e.ndiemp">{{e.nomEmp}}</option>
-        </select>
+<app-user></app-user>
+<app-navbar></app-navbar>
+<div id="accordion" class="my-3">
+  <div *ngFor="let d of deptos; let i = index">
+    <div class="card" class="my-1">
+      <div class="card-header" [attr.id]="'heading' + i">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link"
+            data-toggle="collapse"
+            [attr.data-target]="'#collapse' + i"
+            aria-expanded="true"
+            [attr.aria-controls]="'collapse' + i"
+          >
+            <h4>{{ d.getNombreDepto() }}</h4>
+          </button>
+        </h5>
+      </div>
+      <div
+        [attr.id]="'collapse' + i"
+        class="collapse"
+        [attr.aria-labelledby]="'heading' + i"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">EmpId</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Ciudad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of emps">
+                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getNDIEmp() }}</td>
+                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getNomEmp() }}</td>
+                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getCargoE() }}</td>
+                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getCiudad() }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <input type="submit" value="Localizar">
-</form>
-<div #map style="width: 500px; height: 500px"></div>  
+  </div>
+</div>

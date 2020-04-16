@@ -4,36 +4,39 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './componentes/main/main.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
-
-//import { MapModule, MapAPILoader, BingMapAPILoaderConfig, BingMapAPILoader, WindowRef, DocumentRef, MapServiceFactory, BingMapServiceFactory } from 'angular-maps';
+import { LoginComponent } from './componentes/login/login.component';
+import { UserComponent } from './componentes/userbar/userbar.component';
+import { AuthInterceptorService } from './servicio/auth-interceptor.service';
+import { LocalizarMapComponent } from './componentes/localizar-map/localizar-map.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent,
+    UserComponent,
+    LocalizarMapComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    //MapModule.forRoot()
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule
   ],
   providers: [
-    /*{
-      provide: MapAPILoader, deps: [], useFactory: MapServiceProviderFactory
-    }*/
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-/*export function MapServiceProviderFactory(){
-  let bc:BingMapAPILoaderConfig = new BingMapAPILoaderConfig();
-  bc.apiKey = "AkIad5UaQcWQ1mXKvHO8gpsaHK51WzzKbJv8mVVbmSs5ZxfF17btpgiztkmU3gIq";
-  bc.branch = "experimental";
-  return new BingMapAPILoader(bc, new WindowRef(), new DocumentRef());
-}*/

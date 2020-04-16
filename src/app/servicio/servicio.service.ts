@@ -6,41 +6,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServicioService {
 
-  token: any = "";
+  //token: any = "";
 
   constructor(private http:HttpClient) { 
     
   }
 
-  /*login(){
-    
-    this.http.get("http://localhost:8080/login", {
+  async login(auth: string) {
+    return this.http.get("http://localhost:8080/login", {
       headers: {
-        Authorization: "Basic QUEwMDAxOkpHQUE="
+        Authorization: auth
       },
       responseType: 'text'
-    }).subscribe(
-      (datos:any) => {
-        console.log(datos);
-        this.token = datos;
-        console.log(this.token);
-      }
-    );
-  }*/
-
-  getEmpleados() {
-    return this.http.get("http://localhost:8080/empleados", {
-      headers: {
-        Authorization:"eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY4NDk3MDAsImlzcyI6IkFBMDAwMSIsImV4cCI6MTU4NzcxMjcwMH0.U99E0Uln8PggUIzpvHFEB74YcPCqUmUne-EOR2yQvuQ"
-      }
-    });
+    }).toPromise();
   }
 
-  getEmpleado(id){
-    return this.http.get("http://localhost:8080/empleado?id=" + id, {
-      headers: {
-        Authorization:"eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY4NDk3MDAsImlzcyI6IkFBMDAwMSIsImV4cCI6MTU4NzcxMjcwMH0.U99E0Uln8PggUIzpvHFEB74YcPCqUmUne-EOR2yQvuQ"
-      }
-    });
+  getEmpleados() {
+    return this.http.get("http://localhost:8080/empleados");
+  }
+
+  getEmpleado(id: string){
+    return this.http.get("http://localhost:8080/empleado?id=" + id);
+  }
+
+  getDepartamentos(){
+    return this.http.get("http://localhost:8080/departamentos");
   }
 }

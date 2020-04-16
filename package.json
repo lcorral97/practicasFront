@@ -20,10 +20,13 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
     "@types/bingmaps": "0.0.1",
+    "angular-avatar": "^1.3.0",
     "angular-maps": "^6.0.3",
     "async": "^2.5.0",
     "bingmaps": "^2.0.3",
     "json-loader": "^0.5.7",
+    "ngx-avatar": "^3.7.0",
+    "rb-letter-avatar": "^2.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
