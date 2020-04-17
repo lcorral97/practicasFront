@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,14 @@ import { AuthInterceptorService } from './servicio/auth-interceptor.service';
 import { LocalizarMapComponent } from './componentes/localizar-map/localizar-map.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { AvatarModule } from 'ngx-avatar';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { EmpleadoComponent } from './componentes/empleado/empleado.component';
+import { DepartamentoComponent } from './componentes/departamento/departamento.component';
+
+registerLocaleData(localeEs);
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +28,10 @@ import { AvatarModule } from 'ngx-avatar';
     LoginComponent,
     UserComponent,
     LocalizarMapComponent,
-    NavbarComponent
+    NavbarComponent,
+    PerfilComponent,
+    EmpleadoComponent,
+    DepartamentoComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +45,10 @@ import { AvatarModule } from 'ngx-avatar';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'es'
     }
   ],
   bootstrap: [AppComponent]

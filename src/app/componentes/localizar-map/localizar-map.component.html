@@ -1,6 +1,6 @@
 <app-user></app-user>
 <app-navbar></app-navbar>
-<div class="my-3">
+<div class="my-3 p-1 border border-primary">
 <form [formGroup]="form" (ngSubmit)="localizar()">
     <div class="form-group">
         <select class="form-control" formControlName="select">
@@ -9,5 +9,5 @@
     </div>
     <input type="submit" value="Localizar">
 </form>
-<div class="mx-auto" #map style="width: 500px; height: 500px"></div> 
+<div class="mx-auto my-3" #map style="width: 500px; height: 500px"></div> 
 </div> 

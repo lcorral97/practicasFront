@@ -1,0 +1,133 @@
+<app-user></app-user>
+<div class="p-1 border border-primary">
+  <div class="mt-2 d-flex justify-content-between">
+    <h1>{{ emp.getNomEmp() }}</h1>
+    <a class="text-decoration-none" [routerLink]="['/main']">Volver</a>
+  </div>
+  <hr />
+  <h3 class="pl-2">Datos personales</h3>
+  <div class="pl-4">
+    <div>Nombre: {{ emp.getNomEmp() }}</div>
+    <div>
+      Sexo:
+      <img
+        *ngIf="emp.getSexEmp() == 'V'; else fem"
+        src="assets\img\masc.png"
+        width="16px"
+      />
+      <ng-template #fem>
+        <img src="assets\img\fem.png" width="16px" />
+      </ng-template>
+    </div>
+    <div>Día de nacimiento: {{ emp.getFecNac() | date: "dd/MM/yy" }}</div>
+    <div>Ciudad de residencia: {{ emp.getCiudad() }}</div>
+  </div>
+  <hr />
+  <h3 class="pl-2">Datos profesionales</h3>
+  <div class="pl-4">
+    <div>Id: {{ emp.getNDIEmp() }}</div>
+    <div>
+      Fecha de incorporación: {{ emp.getFecIncorporacion() | date: "dd/MM/yy" }}
+    </div>
+    <div>Cargo: {{ emp.getCargoE() }}</div>
+    <div *ngIf="jefe.getNDIEmp() != null">
+      <h5>
+        <a
+          class="text-decoration-none"
+          data-toggle="collapse"
+          href="#collapseJefe"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+          title="Click para expandir"
+        >
+          Jefe
+        </a>
+      </h5>
+      <div class="collapse" id="collapseJefe">
+        <div class="card card-body">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">EmpId</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Ciudad</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ jefe.getNDIEmp() }}</td>
+                <td>{{ jefe.getNomEmp() }}</td>
+                <td>{{ jefe.getCargoE() }}</td>
+                <td>{{ jefe.getCiudad() }}</td>
+                <td><a class="text-primary" style="cursor: pointer;" (click)="redirigir(jefe.getNDIEmp())">Ver</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <h5>
+      <a
+        class="text-decoration-none"
+        data-toggle="collapse"
+        href="#collapseDepto"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Departamento
+      </a>
+    </h5>
+    <div class="collapse" id="collapseDepto">
+      <div class="card card-body">
+        <div>Código de departamento: {{ depto.getCodDepto() }}</div>
+        <div>Departamento: <a [routerLink]="['/departamento',depto.getCodDepto()]">{{ depto.getNombreDepto() }}</a></div>
+        <div>Ciudad: {{ depto.getCiudad() }}</div>
+        <div>Id Director: {{ depto.getCodDirector() }}</div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div *ngIf="subord.length > 0">
+    <h3>
+      <a
+        class="p-2 text-decoration-none"
+        data-toggle="collapse"
+        href="#collapseSubord"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+        title="Click para expandir"
+      >
+        Subordinados
+      </a>
+    </h3>
+    <div class="collapse" id="collapseSubord">
+      <div class="card card-body">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">EmpId</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Cargo</th>
+              <th scope="col">Ciudad</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of subord">
+              <td>{{ s.getNDIEmp() }}</td>
+              <td>{{ s.getNomEmp() }}</td>
+              <td>{{ s.getCargoE() }}</td>
+              <td>{{ s.getCiudad() }}</td>
+              <td><a class="text-primary" style="cursor: pointer;" (click)="redirigir(s.getNDIEmp())">Ver</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

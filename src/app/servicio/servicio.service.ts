@@ -13,7 +13,7 @@ export class ServicioService {
   }
 
   async login(auth: string) {
-    return this.http.get("http://localhost:8080/login", {
+    return this.http.get("https://springbootlcorral.cfapps.io/login", {
       headers: {
         Authorization: auth
       },
@@ -22,14 +22,18 @@ export class ServicioService {
   }
 
   getEmpleados() {
-    return this.http.get("http://localhost:8080/empleados");
+    return this.http.get("https://springbootlcorral.cfapps.io/empleados");
   }
 
   getEmpleado(id: string){
-    return this.http.get("http://localhost:8080/empleado?id=" + id);
+    return this.http.get("https://springbootlcorral.cfapps.io/empleado?id=" + id);
   }
 
   getDepartamentos(){
-    return this.http.get("http://localhost:8080/departamentos");
+    return this.http.get("https://springbootlcorral.cfapps.io/departamentos");
+  }
+
+  getDepartamento(id: string) {
+    return this.http.get("https://springbootlcorral.cfapps.io/departamento?id=" + id);
   }
 }

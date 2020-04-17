@@ -50,8 +50,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("emp", JSON.stringify(e));
         if (localStorage.getItem("emp") != null) {
           this.router.navigate(['/main']);
-        } else {
-          this.correcto = false;
         }
       }
     )
