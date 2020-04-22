@@ -12,7 +12,7 @@
             aria-expanded="true"
             [attr.aria-controls]="'collapse' + i"
           >
-            <h4>{{ d.getNombreDepto() }}</h4>
+            <h4>{{ d.nombreDepto }}</h4>
           </button>
         </h5>
       </div>
@@ -35,11 +35,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let e of emps">
-                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getNDIEmp() }}</td>
-                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getNomEmp() }}</td>
-                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getCargoE() }}</td>
-                <td *ngIf="e.getCodDepto() == d.getCodDepto()">{{ e.getCiudad() }}</td>
-                <td *ngIf="e.getCodDepto() == d.getCodDepto()"><a [routerLink]="['/empleado', e.getNDIEmp()]">Ver</a></td>
+                <td *ngIf="e.codDepto == d.codDepto">{{ e.ndiemp }}</td>
+                <td *ngIf="e.codDepto == d.codDepto">{{ e.nomEmp }}</td>
+                <td *ngIf="e.codDepto == d.codDepto">{{ e.cargoE }}</td>
+                <td *ngIf="e.codDepto == d.codDepto">{{ e.ciudad }}</td>
+                <td *ngIf="e.codDepto == d.codDepto"><a [routerLink]="['/empleado', e.ndiemp]">Ver</a></td>
               </tr>
             </tbody>
           </table>

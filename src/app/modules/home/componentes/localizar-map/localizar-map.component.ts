@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ServicioService } from 'src/app/servicio/servicio.service';
+import { ServicioService } from 'src/app/core/service/servicio.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Empleado } from 'src/app/clase/empleado';
+import { Empleado } from 'src/app/shared/clase/empleado';
 
 declare var H: any;
 
@@ -28,26 +28,6 @@ export class LocalizarMapComponent implements OnInit {
 
   constructor(private servicio: ServicioService) { 
     this.empleados = new Array<Empleado>();
-    //Lista de Empleados
-    this.servicio.getEmpleados().subscribe((datos: any) => {
-      datos.forEach((d) => {
-        let e = new Empleado();
-        e.setCargoE(d.cargoE);
-        e.setCiudad(d.ciudad);
-        e.setCodDepto(d.codDepto);
-        e.setComisionE(d.comisionE);
-        e.setCoord(d.coord);
-        e.setFecIncorporacion(d.fecIncorporacion);
-        e.setFecNac(d.fecNac);
-        e.setJefeId(d.jefeId);
-        e.setNDIEmp(d.ndiemp);
-        e.setNomEmp(d.nomEmp);
-        e.setPassword(d.password);
-        e.setSalEmp(d.salEmp);
-        e.setSexEmp(d.sexEmp);
-        this.empleados.push(e);
-      });
-    });
     this.form = new FormGroup({
       select: new FormControl('AA0001'),
     });
@@ -59,6 +39,13 @@ export class LocalizarMapComponent implements OnInit {
     });}
 
   ngOnInit(): void {
+    
+    //Lista de Empleados
+    this.servicio.getEmpleados().subscribe((datos: Empleado[]) => {
+      datos.forEach((d) => {
+        this.empleados.push(d);
+      });
+    });
   }
   
   localizar() {

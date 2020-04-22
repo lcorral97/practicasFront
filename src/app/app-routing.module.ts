@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from './componentes/main/main.component';
-import { LoginComponent } from './componentes/login/login.component';
-import { LocalizarMapComponent } from './componentes/localizar-map/localizar-map.component';
-import { PerfilComponent } from './componentes/perfil/perfil.component';
-import { EmpleadoComponent } from './componentes/empleado/empleado.component';
-import { DepartamentoComponent } from './componentes/departamento/departamento.component';
+import { MainComponent } from './modules/home/componentes/main/main.component';
+import { LoginComponent } from './modules/home/componentes/login/login.component';
+import { LocalizarMapComponent } from './modules/home/componentes/localizar-map/localizar-map.component';
+import { PerfilComponent } from './modules/home/componentes/perfil/perfil.component';
+import { EmpleadoComponent } from './modules/home/componentes/empleado/empleado.component';
+import { DepartamentoComponent } from './modules/home/componentes/departamento/departamento.component';
 
 
 const routes: Routes = [

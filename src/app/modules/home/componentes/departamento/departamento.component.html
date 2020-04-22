@@ -3,9 +3,9 @@
   <div class="float-right">
     <a class="text-decoration-none" [routerLink]="['/main']">Volver</a>
   </div>
-  <div>Departamento: {{ depto.getNombreDepto() }}</div>
-  <div>Código del departamento: {{ depto.getCodDepto() }}</div>
-  <div>Ciudad: {{ depto.getCiudad() }}</div>
+  <div>Departamento: {{ depto.nombreDepto }}</div>
+  <div>Código del departamento: {{ depto.codDepto }}</div>
+  <div>Ciudad: {{ depto.ciudad }}</div>
   <div></div>
   <div *ngIf="trabajadores.length > 0">
     <table class="table table-striped">
@@ -20,15 +20,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let tr of trabajadores">
-          <td>{{ tr.getNDIEmp() }}</td>
-          <td>{{ tr.getNomEmp() }}</td>
-          <td>{{ tr.getCargoE() }}</td>
-          <td>{{ tr.getCiudad() }}</td>
+          <td>{{ tr.ndiemp }}</td>
+          <td>{{ tr.nomEmp }}</td>
+          <td>{{ tr.cargoE }}</td>
+          <td>{{ tr.ciudad }}</td>
           <td>
             <a
               class="text-primary"
               style="cursor: pointer;"
-              (click)="redirigir(tr.getNDIEmp())"
+              (click)="redirigir(tr.ndiemp)"
               >Ver</a
             >
           </td>

@@ -1,21 +1,17 @@
+<app-user></app-user>
 <div class="p-1 border border-primary">
-  <div class="d-flex justify-content-between">
-    <h1>{{ emp.getNomEmp() }}</h1>
-    <div class="my-auto d-flex justify-content-between">
-      <a class="text-decoration-none" [routerLink]="['/main']">Volver</a>
-      &nbsp;|&nbsp;
-      <a class="text-primary" style="cursor: pointer;" (click)="logout()"
-        >Logout</a
-      >
-    </div>
+  <div class="mt-2 d-flex justify-content-between">
+    <h1>{{ emp.nomEmp }}</h1>
+    <a class="text-decoration-none" [routerLink]="['/main']">Volver</a>
   </div>
+  <hr />
   <h3 class="pl-2">Datos personales</h3>
   <div class="pl-4">
-    <div>Nombre: {{ emp.getNomEmp() }}</div>
+    <div>Nombre: {{ emp.nomEmp }}</div>
     <div>
       Sexo:
       <img
-        *ngIf="emp.getSexEmp() == 'V'; else fem"
+        *ngIf="emp.sexEmp == 'V'; else fem"
         src="assets\img\masc.png"
         width="16px"
       />
@@ -23,28 +19,18 @@
         <img src="assets\img\fem.png" width="16px" />
       </ng-template>
     </div>
-    <div>Día de nacimiento: {{ emp.getFecNac() | date: "dd/MM/yy" }}</div>
-    <div>Ciudad de residencia: {{ emp.getCiudad() }}</div>
+    <div>Día de nacimiento: {{ emp.fecNac | date: "dd/MM/yy" }}</div>
+    <div>Ciudad de residencia: {{ emp.ciudad }}</div>
   </div>
   <hr />
   <h3 class="pl-2">Datos profesionales</h3>
   <div class="pl-4">
-    <div>Id: {{ emp.getNDIEmp() }}</div>
+    <div>Id: {{ emp.ndiemp }}</div>
     <div>
-      Fecha de incorporación: {{ emp.getFecIncorporacion() | date: "dd/MM/yy" }}
+      Fecha de incorporación: {{ emp.fecIncorporacion | date: "dd/MM/yy" }}
     </div>
-    <div>
-      Salario:
-      <span
-        id="sal"
-        (mouseenter)="destaparSpoiler('sal')"
-        (mouseleave)="taparSpoiler('sal')"
-        class="text-dark bg-dark"
-        >{{ emp.getSalEmp() | currency: "EUR":"symbol" }}</span
-      >
-    </div>
-    <div>Cargo: {{ emp.getCargoE() }}</div>
-    <div *ngIf="jefe.getNDIEmp() != null">
+    <div>Cargo: {{ emp.cargoE }}</div>
+    <div *ngIf="jefe.ndiemp != null">
       <h5>
         <a
           class="text-decoration-none"
@@ -72,13 +58,11 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{ jefe.getNDIEmp() }}</td>
-                <td>{{ jefe.getNomEmp() }}</td>
-                <td>{{ jefe.getCargoE() }}</td>
-                <td>{{ jefe.getCiudad() }}</td>
-                <td>
-                  <a [routerLink]="['/empleado', jefe.getNDIEmp()]">Ver</a>
-                </td>
+                <td>{{ jefe.ndiemp }}</td>
+                <td>{{ jefe.nomEmp }}</td>
+                <td>{{ jefe.cargoE }}</td>
+                <td>{{ jefe.ciudad }}</td>
+                <td><a class="text-primary" style="cursor: pointer;" (click)="redirigir(jefe.ndiemp)">Ver</a></td>
               </tr>
             </tbody>
           </table>
@@ -99,21 +83,11 @@
     </h5>
     <div class="collapse" id="collapseDepto">
       <div class="card card-body">
-        <div>Código de departamento: {{ depto.getCodDepto() }}</div>
-        <div>Departamento: <a [routerLink]="['/departamento', depto.getCodDepto()]">{{ depto.getNombreDepto() }}</a></div>
-        <div>Ciudad: {{ depto.getCiudad() }}</div>
-        <div>Id Director: {{ depto.getCodDirector() }}</div>
+        <div>Código de departamento: {{ depto.codDepto }}</div>
+        <div>Departamento: <a [routerLink]="['/departamento',depto.codDepto]">{{ depto.nombreDepto }}</a></div>
+        <div>Ciudad: {{ depto.ciudad }}</div>
+        <div>Id Director: {{ depto.codDirector }}</div>
       </div>
-    </div>
-    <div>
-      Comisión:
-      <span
-        id="com"
-        (mouseenter)="destaparSpoiler('com')"
-        (mouseleave)="taparSpoiler('com')"
-        class="text-dark bg-dark"
-        >{{ emp.getComisionE() | currency: "EUR":"symbol" }}</span
-      >
     </div>
   </div>
   <hr />
@@ -145,11 +119,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let s of subord">
-              <td>{{ s.getNDIEmp() }}</td>
-              <td>{{ s.getNomEmp() }}</td>
-              <td>{{ s.getCargoE() }}</td>
-              <td>{{ s.getCiudad() }}</td>
-              <td><a [routerLink]="['/empleado', s.getNDIEmp()]">Ver</a></td>
+              <td>{{ s.ndiemp }}</td>
+              <td>{{ s.nomEmp }}</td>
+              <td>{{ s.cargoE }}</td>
+              <td>{{ s.ciudad }}</td>
+              <td><a class="text-primary" style="cursor: pointer;" (click)="redirigir(s.ndiemp)">Ver</a></td>
             </tr>
           </tbody>
         </table>

@@ -6,7 +6,7 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
-import { ServicioService } from 'src/app/servicio/servicio.service';
+import { ServicioService } from 'src/app/core/service/servicio.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,11 +28,6 @@ export class AuthInterceptorService implements HttpInterceptor {
     if (!req.url.includes('login')) {
       let token: string = localStorage.getItem('token');
       let request = req;
-      if (!token) {
-        token = await this.service.login(
-          'Basic ' +
-            btoa(`${localStorage.getItem('id')}:${localStorage.getItem('password')}`));
-      }
       localStorage.setItem("token", token);
       request = req.clone({
         setHeaders: {

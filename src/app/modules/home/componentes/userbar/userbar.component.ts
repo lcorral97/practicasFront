@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Empleado } from 'src/app/clase/empleado';
+import { Empleado } from 'src/app/shared/clase/empleado';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,19 +16,7 @@ export class UserComponent implements OnInit {
     if (localStorage.getItem("token") != null){
       this.emp = new Empleado();
       let empJSON = JSON.parse(localStorage.getItem('emp'));
-      this.emp.setCargoE(empJSON.cargoE);
-      this.emp.setCiudad(empJSON.ciudad);
-      this.emp.setCodDepto(empJSON.codDepto);
-      this.emp.setComisionE(empJSON.comisionE);
-      this.emp.setCoord(empJSON.coord);
-      this.emp.setFecIncorporacion(empJSON.fecIncorporacion);
-      this.emp.setFecNac(empJSON.fecNac);
-      this.emp.setJefeId(empJSON.jefeId);
-      this.emp.setNDIEmp(empJSON.ndiemp);
-      this.emp.setNomEmp(empJSON.nomEmp);
-      this.emp.setPassword(empJSON.password);
-      this.emp.setSalEmp(empJSON.salEmp);
-      this.emp.setSexEmp(empJSON.sexEmp);
+      this.emp = empJSON;
     } else {
       this.router.navigate(['/login']);
     }
