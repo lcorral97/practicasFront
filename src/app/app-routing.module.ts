@@ -12,6 +12,7 @@ import { ModificarPerfilComponent } from './modules/home/componentes/modificar-p
 const routes: Routes = [
   {path:'main', component:MainComponent},
   {path:'login', component:LoginComponent},
+  {path:'login/error', component:LoginComponent},
   {path:'localizarMap', component:LocalizarMapComponent},
   {path:'miPerfil', component: PerfilComponent},
   {path:'empleado/:id', component: EmpleadoComponent},

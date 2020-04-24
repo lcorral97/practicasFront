@@ -27,7 +27,8 @@ export class ModificarPerfilComponent implements OnInit {
       'fecNac': new FormControl(this.emp.fecNac),
       'ciudad': new FormControl(this.emp.ciudad),
       'lat': new FormControl(this.lat),
-      'long': new FormControl(this.long)
+      'long': new FormControl(this.long),
+      'password': new FormControl()
     });
   }
 
@@ -40,6 +41,7 @@ export class ModificarPerfilComponent implements OnInit {
     this.emp.fecNac = this.modificarForm.controls["fecNac"].value;
     this.emp.ciudad = this.modificarForm.controls["ciudad"].value;
     this.emp.coord = this.modificarForm.controls["lat"].value + "," + this.modificarForm.controls["long"].value;
+    this.emp.password = this.modificarForm.controls["password"].value;
     this.empService.modificarEmpleado(this.emp.ndiemp, this.emp).subscribe();
     localStorage.setItem("emp", JSON.stringify(this.emp));
     this.router.navigate(['/miPerfil']);

@@ -18,7 +18,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private empService: EmpleadoService,
     private router: Router) {
-      this.correcto = true;
+      if (this.router.url=="/login/error"){
+        this.correcto = false;
+      } else {
+        this.correcto = true;
+      }
       this.registroForm = new FormGroup({
           'id': new FormControl(),
           'password': new FormControl()
@@ -39,6 +43,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/main']);
         }
       }
-    )
+    );
   }
 }

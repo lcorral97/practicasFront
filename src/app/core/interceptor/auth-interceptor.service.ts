@@ -5,7 +5,9 @@ import {
   HttpHandler,
   HttpEvent,
 } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
+import { Observable, from, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +20,12 @@ export class AuthInterceptorService implements HttpInterceptor {
     return from(this.interceptor(req, next));
   }
 
-  constructor() {}
+  constructor(private router:Router) {}
 
-  async interceptor(
+  interceptor(
     req: HttpRequest<any>,
     next: HttpHandler
-  ): Promise<HttpEvent<any>> {
+  ): Observable<HttpEvent<any>> {
     if (!req.url.includes('login')) {
       let token: string = localStorage.getItem('token');
       let request = req;
@@ -35,9 +37,15 @@ export class AuthInterceptorService implements HttpInterceptor {
       });
       localStorage.removeItem("id");
       localStorage.removeItem("password");
-      return next.handle(request).toPromise();
+      return next.handle(request);
     } else {
-      return next.handle(req).toPromise();
+      return next.handle(req).pipe(catchError(err => {
+        if (err.status === 401) {
+          this.router.navigate(['login/error']);
+        }
+        const error = err.error.message || err.statusText;
+        return throwError(err);
+      }));
     }
   }
 }
