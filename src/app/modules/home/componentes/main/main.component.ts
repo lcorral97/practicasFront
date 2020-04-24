@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Departamento } from 'src/app/shared/clase/departamento';
 import { Empleado } from 'src/app/shared/clase/empleado';
-import { ServicioService } from 'src/app/core/service/servicio.service';
+import { EmpleadoService } from 'src/app/core/service/empleado.service';
+import { DepartamentoService } from 'src/app/core/service/departamento.service';
 
 
 @Component({
@@ -13,21 +14,22 @@ export class MainComponent implements OnInit {
 
   deptos: Array<Departamento>;
   emps: Array<Empleado>;
-  constructor(private servicio: ServicioService) {
+  constructor(private empService: EmpleadoService,
+    private deptoService: DepartamentoService) {
     this.deptos = new Array<Departamento>();
     this.emps = new Array<Empleado>();
   }
 
   ngOnInit(): void {
     
-    this.servicio.getDepartamentos().subscribe(
+    this.deptoService.getDepartamentos().subscribe(
       (datos:Departamento[]) => {
         datos.forEach((d) => {
           this.deptos.push(d);
         })
       }
     );
-    this.servicio.getEmpleados().subscribe((datos: Empleado[]) => {
+    this.empService.getEmpleados().subscribe((datos: Empleado[]) => {
       datos.forEach((d) => {
         this.emps.push(d);
       });

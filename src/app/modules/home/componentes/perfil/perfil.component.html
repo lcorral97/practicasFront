@@ -4,9 +4,13 @@
     <div class="my-auto d-flex justify-content-between">
       <a class="text-decoration-none" [routerLink]="['/main']">Volver</a>
       &nbsp;|&nbsp;
-      <a class="text-primary" style="cursor: pointer;" (click)="logout()"
-        >Logout</a
-      >
+      <a class="text-primary" style="cursor: pointer;" [routerLink]="['/modificar']">
+        Modificar
+      </a>
+      &nbsp;|&nbsp;
+      <a class="text-primary" style="cursor: pointer;" (click)="logout()">
+        Logout
+      </a>
     </div>
   </div>
   <h3 class="pl-2">Datos personales</h3>

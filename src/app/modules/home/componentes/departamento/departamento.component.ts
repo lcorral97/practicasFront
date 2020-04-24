@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Departamento } from 'src/app/shared/clase/departamento';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioService } from 'src/app/core/service/servicio.service';
 import { Empleado } from 'src/app/shared/clase/empleado';
+import { DepartamentoService } from 'src/app/core/service/departamento.service';
+import { EmpleadoService } from 'src/app/core/service/empleado.service';
 
 @Component({
   selector: 'app-departamento',
@@ -15,7 +16,8 @@ export class DepartamentoComponent implements OnInit {
   depto: Departamento;
   trabajadores: Array<Empleado>;
   constructor(private ruta:ActivatedRoute,
-    private servicio: ServicioService,
+    private deptoService: DepartamentoService,
+    private empService: EmpleadoService,
     private router: Router) {
       this.depto = new Departamento();
       this.trabajadores = new Array<Empleado>();
@@ -29,7 +31,7 @@ export class DepartamentoComponent implements OnInit {
 
   async ngOnInit() {
     
-    await this.servicio.getDepartamento(this.ruta.snapshot.params.id).subscribe(
+    await this.deptoService.getDepartamento(this.ruta.snapshot.params.id).subscribe(
       (datos:Departamento) => {
         this.depto = datos;
 
@@ -37,7 +39,7 @@ export class DepartamentoComponent implements OnInit {
     );
 
     
-    await this.servicio.getEmpleados().subscribe((datos: Empleado[]) => {
+    await this.empService.getEmpleados().subscribe((datos: Empleado[]) => {
       datos.forEach((e) => {
         if (e.codDepto == this.depto.codDepto) {
           this.trabajadores.push(e);

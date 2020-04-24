@@ -1,0 +1,59 @@
+<div class="col-md-6 offset-md-3 border border-primary p-3">
+  <form [formGroup]="modificarForm" (ngSubmit)="modificar()">
+    <label class="font-weight-bold">Nombre</label>
+    <input
+      type="text"
+      id="inputNombre"
+      class="form-control"
+      formControlName="nombre"
+    />
+    <br/>
+    <label class="font-weight-bold">Sexo</label>
+    <div class="form-check">
+      <label>
+        <input type="radio" value="V" formControlName="sexo" />
+        <span>Masculino</span>
+      </label>
+      <label>
+        <input type="radio" value="M" formControlName="sexo" />
+        <span>Femenino</span>
+      </label>
+    </div>
+    <label class="font-weight-bold">
+      Fecha de Nacimiento
+    </label>
+    <br/>
+    <input type="date" id="fecNac" formControlName="fecNac" name="fecNac" />
+    <br/>
+    <label class="font-weight-bold mt-2">Ciudad</label>
+    <input
+      type="text"
+      id="inputCiudad"
+      class="form-control"
+      formControlName="ciudad"
+    />
+    <br/>
+    <label class="font-weight-bold">Coordenadas</label>
+    <div class="d-flex justify-content-between">
+      <div>
+        <label>Latitud</label>
+        <input
+          type="number"
+          id="inputLat"
+          class="form-control"
+          formControlName="lat"
+        />
+      </div>
+      <div>
+        <label>Longitud</label>
+        <input
+          type="number"
+          id="inputLong"
+          class="form-control"
+          formControlName="long"
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Modificar</button>
+  </form>
+</div>

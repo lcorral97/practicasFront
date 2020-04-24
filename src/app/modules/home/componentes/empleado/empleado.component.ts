@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicioService } from 'src/app/core/service/servicio.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from 'src/app/shared/clase/empleado';
 import { Departamento } from 'src/app/shared/clase/departamento';
+import { EmpleadoService } from 'src/app/core/service/empleado.service';
+import { DepartamentoService } from 'src/app/core/service/departamento.service';
 
 @Component({
   selector: 'app-empleado',
@@ -15,7 +16,8 @@ export class EmpleadoComponent implements OnInit {
   emp: Empleado;
   depto: Departamento;
   constructor(
-    private servicio: ServicioService,
+    private empService: EmpleadoService,
+    private deptoService: DepartamentoService,
     private ruta: ActivatedRoute,
     private router: Router
   ) {
@@ -35,13 +37,13 @@ export class EmpleadoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.servicio.getEmpleado(this.ruta.snapshot.params.id).forEach((v) => {
+    await this.empService.getEmpleado(this.ruta.snapshot.params.id).forEach((v) => {
       this.emp = v;
     });
 
     //Cargar jefe
     if (this.emp.jefeId != null) {
-      this.servicio
+      this.empService
         .getEmpleado(this.emp.jefeId)
         .subscribe((datos: Empleado) => {
           this.jefe = datos;
@@ -49,7 +51,7 @@ export class EmpleadoComponent implements OnInit {
     }
 
     //Cargar subordinados
-    this.servicio.getEmpleados().subscribe((datos: Empleado[]) => {
+    this.empService.getEmpleados().subscribe((datos: Empleado[]) => {
       datos.forEach((d) => {
         if (d.jefeId == this.emp.ndiemp) {
           this.subord.push(d);
@@ -58,7 +60,7 @@ export class EmpleadoComponent implements OnInit {
     });
 
     //Cargar departamento
-    this.servicio
+    this.deptoService
       .getDepartamento(this.emp.codDepto)
       .subscribe((datos: Departamento) => {
         this.depto = datos;

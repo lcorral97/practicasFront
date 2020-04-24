@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ServicioService } from 'src/app/core/service/servicio.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Empleado } from 'src/app/shared/clase/empleado';
+import { EmpleadoService } from 'src/app/core/service/empleado.service';
 
 declare var H: any;
 
@@ -26,7 +26,7 @@ export class LocalizarMapComponent implements OnInit {
   empleados: Array<Empleado>;
   emp: Empleado;
 
-  constructor(private servicio: ServicioService) { 
+  constructor(private empService: EmpleadoService) { 
     this.empleados = new Array<Empleado>();
     this.form = new FormGroup({
       select: new FormControl('AA0001'),
@@ -41,7 +41,7 @@ export class LocalizarMapComponent implements OnInit {
   ngOnInit(): void {
     
     //Lista de Empleados
-    this.servicio.getEmpleados().subscribe((datos: Empleado[]) => {
+    this.empService.getEmpleados().subscribe((datos: Empleado[]) => {
       datos.forEach((d) => {
         this.empleados.push(d);
       });
@@ -50,7 +50,7 @@ export class LocalizarMapComponent implements OnInit {
   
   localizar() {
     this.mapElement.nativeElement.innerHTML = '';
-    this.servicio
+    this.empService
       .getEmpleado(this.form.value.select)
       .subscribe((datos: any) => {
         //this.emp = datos;

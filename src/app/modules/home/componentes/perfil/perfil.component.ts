@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicioService } from 'src/app/core/service/servicio.service';
 import { Empleado } from 'src/app/shared/clase/empleado';
 import { Router } from '@angular/router';
 import { Departamento } from 'src/app/shared/clase/departamento';
+import { EmpleadoService } from 'src/app/core/service/empleado.service';
+import { DepartamentoService } from 'src/app/core/service/departamento.service';
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +17,8 @@ export class PerfilComponent implements OnInit {
   subord: Array<Empleado>;
   emp: Empleado;
   depto: Departamento;
-  constructor(private servicio:ServicioService,
+  constructor(private empService:EmpleadoService,
+    private deptoService: DepartamentoService,
     private router: Router) {
     if (localStorage.getItem("token") != null){
       //Inicializar
@@ -31,7 +33,7 @@ export class PerfilComponent implements OnInit {
       
       //Cargar jefe
       if (this.emp.jefeId != null) {
-        this.servicio.getEmpleado(this.emp.jefeId).subscribe(
+        this.empService.getEmpleado(this.emp.jefeId).subscribe(
           (datos:Empleado) => {
             this.jefe = datos;
           }
@@ -39,7 +41,7 @@ export class PerfilComponent implements OnInit {
       }
 
       //Cargar subordinados
-      this.servicio.getEmpleados().subscribe(
+      this.empService.getEmpleados().subscribe(
         (datos:Empleado[]) => {
           datos.forEach((d) => {
             if (d.jefeId == this.emp.ndiemp) {
@@ -50,7 +52,7 @@ export class PerfilComponent implements OnInit {
       )
 
       //Cargar departamento
-      this.servicio.getDepartamento(this.emp.codDepto).subscribe(
+      this.deptoService.getDepartamento(this.emp.codDepto).subscribe(
         (datos:Departamento) => {
           this.depto = datos
         }

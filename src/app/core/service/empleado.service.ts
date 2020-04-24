@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Empleado } from '../../shared/clase/empleado';
 import { Observable } from 'rxjs';
-import { Departamento } from '../../shared/clase/departamento';
+import { Empleado } from 'src/app/shared/clase/empleado';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServicioService {
+export class EmpleadoService {
 
-  constructor(private http:HttpClient) { 
-    
-  }
-
+  constructor(private http:HttpClient) { }
+  
   async login(auth: string): Promise<string> {
     return this.http.get("https://springbootlcorral.cfapps.io/login", {
       headers: {
@@ -30,11 +27,7 @@ export class ServicioService {
     return this.http.get<Empleado>("https://springbootlcorral.cfapps.io/empleado?id=" + id);
   }
 
-  getDepartamentos(): Observable<Departamento[]>{
-    return this.http.get<Departamento[]>("https://springbootlcorral.cfapps.io/departamentos");
-  }
-
-  getDepartamento(id: string): Observable<Departamento> {
-    return this.http.get<Departamento>("https://springbootlcorral.cfapps.io/departamento?id=" + id);
+  modificarEmpleado(id: string, emp: Empleado): Observable<Empleado> {
+    return this.http.put<Empleado>("https://springbootlcorral.cfapps.io/empleado?id=" + id, emp);
   }
 }

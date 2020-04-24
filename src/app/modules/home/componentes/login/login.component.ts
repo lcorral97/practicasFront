@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Empleado } from 'src/app/shared/clase/empleado';
-import { ServicioService } from 'src/app/core/service/servicio.service';
 import { Router } from '@angular/router';
+import { EmpleadoService } from 'src/app/core/service/empleado.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   emp: Empleado;
   correcto: boolean;
 
-  constructor(private service: ServicioService,
+  constructor(private empService: EmpleadoService,
     private router: Router) {
       this.correcto = true;
       this.registroForm = new FormGroup({
@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    localStorage.setItem("token", await this.service.login("Basic " + btoa(this.registroForm.controls['id'].value + ":" + this.registroForm.controls['password'].value)));
+    localStorage.setItem("token", await this.empService.login("Basic " + btoa(this.registroForm.controls['id'].value + ":" + this.registroForm.controls['password'].value)));
     let e = new Empleado();
-    this.service.getEmpleado(this.registroForm.controls['id'].value).toPromise().then(
+    this.empService.getEmpleado(this.registroForm.controls['id'].value).toPromise().then(
       (datos:Empleado) => {
         e = datos;
         localStorage.setItem("emp", JSON.stringify(e));

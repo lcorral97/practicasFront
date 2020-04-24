@@ -19,6 +19,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { EmpleadoComponent } from './modules/home/componentes/empleado/empleado.component';
 import { DepartamentoComponent } from './modules/home/componentes/departamento/departamento.component';
+import { ModificarPerfilComponent } from './modules/home/componentes/modificar-perfil/modificar-perfil.component';
 
 registerLocaleData(localeEs);
 @NgModule({
@@ -31,7 +32,8 @@ registerLocaleData(localeEs);
     NavbarComponent,
     PerfilComponent,
     EmpleadoComponent,
-    DepartamentoComponent
+    DepartamentoComponent,
+    ModificarPerfilComponent
   ],
   imports: [
     BrowserModule,

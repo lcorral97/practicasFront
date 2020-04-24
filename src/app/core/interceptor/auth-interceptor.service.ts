@@ -6,7 +6,6 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
-import { ServicioService } from 'src/app/core/service/servicio.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +18,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     return from(this.interceptor(req, next));
   }
 
-  constructor(private service: ServicioService) {}
+  constructor() {}
 
   async interceptor(
     req: HttpRequest<any>,

@@ -6,6 +6,7 @@ import { LocalizarMapComponent } from './modules/home/componentes/localizar-map/
 import { PerfilComponent } from './modules/home/componentes/perfil/perfil.component';
 import { EmpleadoComponent } from './modules/home/componentes/empleado/empleado.component';
 import { DepartamentoComponent } from './modules/home/componentes/departamento/departamento.component';
+import { ModificarPerfilComponent } from './modules/home/componentes/modificar-perfil/modificar-perfil.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'miPerfil', component: PerfilComponent},
   {path:'empleado/:id', component: EmpleadoComponent},
   {path:'departamento/:id', component: DepartamentoComponent},
+  {path:'modificar', component:ModificarPerfilComponent},
   {path:'**', redirectTo:'login'}
 ];
 
