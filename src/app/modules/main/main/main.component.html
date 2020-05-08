@@ -1,0 +1,31 @@
+<app-user></app-user>
+<app-navbar></app-navbar>
+<div class="my-3 p-3 border border-primary">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let d of deptos">
+      <mat-expansion-panel-header>
+        {{d.nombreDepto}}
+      </mat-expansion-panel-header>
+      <table matSort class="table mat-elevation-z4" (matSortChange)="sortData($event)" [matSortDisableClear]="true">
+        <thead class="thead-dark">
+          <tr>
+            <th mat-sort-header="ndiemp" scope="col">EmpId</th>
+            <th mat-sort-header="nomEmp" scope="col">Nombre</th>
+            <th mat-sort-header="cargoE" scope="col">Cargo</th>
+            <th mat-sort-header="ciudad" scope="col">Ciudad</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of sortedData">
+            <td *ngIf="e.codDepto == d.codDepto">{{ e.ndiemp }}</td>
+            <td *ngIf="e.codDepto == d.codDepto">{{ e.nomEmp }}</td>
+            <td *ngIf="e.codDepto == d.codDepto">{{ e.cargoE }}</td>
+            <td *ngIf="e.codDepto == d.codDepto">{{ e.ciudad }}</td>
+            <td *ngIf="e.codDepto == d.codDepto"><a [routerLink]="['/empleado', e.ndiemp]">Ver</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

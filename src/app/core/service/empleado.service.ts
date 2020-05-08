@@ -2,32 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Empleado } from 'src/app/shared/clase/empleado';
+import { env } from 'src/environments/environment';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpleadoService {
 
-  constructor(private http:HttpClient) { }
-  
-  async login(auth: string): Promise<string> {
-    return this.http.get("https://springbootlcorral.cfapps.io/login", {
-      headers: {
-        Authorization: auth
-      },
-      responseType: 'text'
-    }).toPromise();
-  }
+  constructor(private dataService:DataService) { }
 
   getEmpleados(): Observable<Empleado[]> {
-    return this.http.get<Empleado[]>("https://springbootlcorral.cfapps.io/empleados");
+    return this.dataService.get(env.urlBase + "empleados");
   }
 
   getEmpleado(id: string): Observable<Empleado>{
-    return this.http.get<Empleado>("https://springbootlcorral.cfapps.io/empleado?id=" + id);
+    return this.dataService.get(env.urlBase + "empleado?id=" + id);
   }
 
   modificarEmpleado(id: string, emp: Empleado): Observable<Empleado> {
-    return this.http.put<Empleado>("https://springbootlcorral.cfapps.io/empleado?id=" + id, emp);
+    return this.dataService.put(env.urlBase + "empleado?id=" + id, emp);
   }
 }

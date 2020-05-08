@@ -1,0 +1,76 @@
+<div class="col-md-6 offset-md-3 border border-primary p-3">
+  <form [formGroup]="modificarForm" (ngSubmit)="modificar()">
+    <mat-form-field class="w-100">
+      <mat-label class="font-weight-bold">Nombre</mat-label>
+      <input
+        type="text"
+        id="inputNombre"
+        class="form-control"
+        formControlName="nombre"
+        matInput
+      />
+    </mat-form-field>
+    <br/>
+    <label class="font-weight-bold label">Sexo</label>
+    <br/>
+    <mat-radio-group class="ml-2" formControlName="sexo">
+      <mat-radio-button value="V">Masculino</mat-radio-button>
+      &nbsp;
+      <mat-radio-button value="M">Femenino</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field class="w-100">
+      <mat-label class="font-weight-bold">
+        Fecha de Nacimiento
+      </mat-label>
+      <input matInput type="date" id="fecNac" formControlName="fecNac" name="fecNac" />
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="w-100">
+      <mat-label class="font-weight-bold">Ciudad</mat-label>
+      <input
+        type="text"
+        id="inputCiudad"
+        class="form-control"
+        formControlName="ciudad"
+        matInput
+      />
+    </mat-form-field>
+    <br/>
+    <label class="font-weight-bold label">Coordenadas</label>
+    <div class="d-flex justify-content-between">
+      <mat-form-field>
+        <mat-label>Latitud</mat-label>
+        <input
+          type="number"
+          id="inputLat"
+          class="form-control"
+          formControlName="lat"
+          matInput
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Longitud</mat-label>
+        <input
+          type="number"
+          id="inputLong"
+          class="form-control"
+          formControlName="long"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+    <mat-form-field class="w-100">
+      <mat-label>Nueva Contraseña</mat-label>
+      <input
+        type="password"
+        id="inputPass"
+        class="form-control"
+        formControlName="password"
+        matInput
+      />
+    </mat-form-field>
+    <div class="row justify-content-center mt-2">
+      <button matButton type="submit" class="btn btn-primary mt-2">Modificar</button>
+    </div>
+  </form>
+</div>

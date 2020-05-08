@@ -1,0 +1,14 @@
+<app-user></app-user>
+<app-navbar></app-navbar>
+<div class="my-3 p-1 border border-primary">
+<form class="text-center" [formGroup]="form" (ngSubmit)="localizar()">
+    <mat-form-field class="w-100">
+        <mat-label>Selecciona Trabajador...</mat-label>
+        <mat-select class="form-control" formControlName="select">
+            <mat-option *ngFor="let e of empleados" [value]="e.ndiemp">{{e.nomEmp}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <input matButton type="submit" value="Localizar" class="btn btn-primary w-25">
+</form>
+<div class="mx-auto my-3" #map style="width: 500px; height: 500px"></div> 
+</div> 
