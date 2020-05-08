@@ -7,6 +7,7 @@ import { LocalizarMapComponent } from './localizar-map/localizar-map.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from '../perfil/userbar/userbar.component';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MainRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    UserComponent
+  ],
+  exports: []
 })
 export class MainModule { }

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         this.correcto = true;
       }
       this.registroForm = new FormGroup({
-          'id': new FormControl(),
+          'ndi': new FormControl(),
           'password': new FormControl()
       });
   }
@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     let token: string;
-    localStorage.setItem("token", await this.authService.login("Basic " + btoa(this.registroForm.controls['id'].value + ":" + this.registroForm.controls['password'].value)));
+    localStorage.setItem("token", await this.authService.login("Basic " + btoa(this.registroForm.controls['ndi'].value + ":" + this.registroForm.controls['password'].value)));
     let e = new Empleado();
-    this.empService.getEmpleado(this.registroForm.controls['id'].value).subscribe(
+    this.empService.getEmpleado(this.registroForm.controls['ndi'].value).subscribe(
       (datos:Empleado) => {
         e = datos;
         localStorage.setItem("emp", JSON.stringify(e));
