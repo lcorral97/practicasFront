@@ -11,8 +11,7 @@ import { ModificarPerfilComponent } from './modules/perfil/modificar-perfil/modi
 
 const routes: Routes = [
   {path:'login', loadChildren:() => import('src/app/modules/auth/auth.module').then(m => m.AuthModule)},
-  {path:'main', component:MainComponent},
-  {path:'localizarMap', component:LocalizarMapComponent},
+  {path:'main', loadChildren:() => import('src/app/modules/main/main.module').then(m => m.MainModule)},
   {path:'miPerfil', component: PerfilComponent},
   {path:'empleado/:id', component: EmpleadoComponent},
   {path:'departamento/:id', component: DepartamentoComponent},

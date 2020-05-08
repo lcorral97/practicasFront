@@ -30,10 +30,7 @@ registerLocaleData(localeEs);
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     UserComponent,
-    LocalizarMapComponent,
-    NavbarComponent,
     PerfilComponent,
     EmpleadoComponent,
     DepartamentoComponent,
