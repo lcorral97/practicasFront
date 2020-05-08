@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from '../perfil/userbar/userbar.component';
 import { RouterModule } from '@angular/router';
 import { AvatarModule } from 'ngx-avatar';
+import { PerfilModule } from '../perfil/perfil.module';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { AvatarModule } from 'ngx-avatar';
     ReactiveFormsModule,
     RouterModule,
     AvatarModule,
-    UserComponent
+    PerfilModule
   ],
   exports: []
 })

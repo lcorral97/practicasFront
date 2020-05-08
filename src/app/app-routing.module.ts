@@ -13,8 +13,8 @@ const routes: Routes = [
   {path:'login', loadChildren:() => import('src/app/modules/auth/auth.module').then(m => m.AuthModule)},
   {path:'main', loadChildren:() => import('src/app/modules/main/main.module').then(m => m.MainModule)},
   {path:'perfil', loadChildren:() => import('src/app/modules/perfil/perfil.module').then(m => m.PerfilModule)},
-  {path:'empleado/:id', component: EmpleadoComponent},
-  {path:'departamento/:id', component: DepartamentoComponent},
+  {path:'empleado', loadChildren:() => import('src/app/modules/empleado/empleado.module').then(m => m.EmpleadoModule)},
+  {path:'departamento', loadChildren:() => import('src/app/modules/departamento/departamento.module').then(m => m.DepartamentoModule)},
   {path:'**', redirectTo:'login'}
 ];
 
