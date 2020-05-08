@@ -9,18 +9,21 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from '../perfil/userbar/userbar.component';
 import { RouterModule } from '@angular/router';
+import { AvatarModule } from 'ngx-avatar';
 
 
 @NgModule({
   entryComponents: [MainComponent, LocalizarMapComponent, NavbarComponent],
-  declarations: [MainComponent, LocalizarMapComponent, NavbarComponent, UserComponent],
+  declarations: [MainComponent, LocalizarMapComponent, NavbarComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AvatarModule,
+    UserComponent
   ],
-  exports: [UserComponent]
+  exports: []
 })
 export class MainModule { }

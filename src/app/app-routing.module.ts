@@ -12,10 +12,9 @@ import { ModificarPerfilComponent } from './modules/perfil/modificar-perfil/modi
 const routes: Routes = [
   {path:'login', loadChildren:() => import('src/app/modules/auth/auth.module').then(m => m.AuthModule)},
   {path:'main', loadChildren:() => import('src/app/modules/main/main.module').then(m => m.MainModule)},
-  {path:'miPerfil', component: PerfilComponent},
+  {path:'perfil', loadChildren:() => import('src/app/modules/perfil/perfil.module').then(m => m.PerfilModule)},
   {path:'empleado/:id', component: EmpleadoComponent},
   {path:'departamento/:id', component: DepartamentoComponent},
-  {path:'modificar', component:ModificarPerfilComponent},
   {path:'**', redirectTo:'login'}
 ];
 

@@ -44,7 +44,7 @@ export class ModificarPerfilComponent implements OnInit {
     this.emp.password = this.modificarForm.controls["password"].value == null?this.emp.password:this.modificarForm.controls["password"].value;
     this.empService.modificarEmpleado(this.emp.ndiemp, this.emp).subscribe();
     localStorage.setItem("emp", JSON.stringify(this.emp));
-    this.router.navigate(['/miPerfil']);
+    this.router.navigate(['/perfil']);
   }
 
 }
