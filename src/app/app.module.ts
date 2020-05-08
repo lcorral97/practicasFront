@@ -25,12 +25,13 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import '@angular/compiler';
+import { MainModule } from './modules/main/main.module';
 
 registerLocaleData(localeEs);
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
+    //UserComponent,
     PerfilComponent,
     EmpleadoComponent,
     DepartamentoComponent,
@@ -46,7 +47,8 @@ registerLocaleData(localeEs);
     AvatarModule,
     BrowserAnimationsModule,
     MaterialModule,
-    routing
+    routing,
+    MainModule
   ],
   providers: [
     {
