@@ -4,7 +4,8 @@
 
 export const env = {
   production: false,
-  urlBase: "https://springbootlcorral.cfapps.io/"
+  urlBase: "https://springbootlcorral.cfapps.io/",
+  mock: false
 };
 
 /*

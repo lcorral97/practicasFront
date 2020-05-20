@@ -1,0 +1,14 @@
+[
+    {
+        "codDepto" : "1000",
+        "nombreDepto" : "Depto 1",
+        "ciudad" : "Bilbao",
+        "codDirector" : "1"
+    },
+    {
+        "codDepto" : "3000",
+        "nombreDepto" : "Depto 2",
+        "ciudad" : "Santander",
+        "codDirector" : "3"
+    }
+]

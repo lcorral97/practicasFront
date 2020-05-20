@@ -35,8 +35,8 @@ export class AuthInterceptorService implements HttpInterceptor {
           Authorization: token,
         },
       });
-      localStorage.removeItem("id");
-      localStorage.removeItem("password");
+      //localStorage.removeItem("id");
+      //localStorage.removeItem("password");
       return next.handle(request);
     } else {
       return next.handle(req).pipe(catchError(err => {

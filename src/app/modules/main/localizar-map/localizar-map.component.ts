@@ -28,9 +28,6 @@ export class LocalizarMapComponent implements OnInit {
 
   constructor(private empService: EmpleadoService) { 
     this.empleados = new Array<Empleado>();
-    this.form = new FormGroup({
-      select: new FormControl('AA0001'),
-    });
 
     //HERE Map
     this.platform = new H.service.Platform({
@@ -45,6 +42,10 @@ export class LocalizarMapComponent implements OnInit {
       datos.forEach((d) => {
         this.empleados.push(d);
       });
+    });
+    
+    this.form = new FormGroup({
+      select: new FormControl(this.empleados[0].ndiemp),
     });
   }
   

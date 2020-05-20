@@ -34,7 +34,6 @@ export class DepartamentoComponent implements OnInit {
     this.deptoService.getDepartamento(this.ruta.snapshot.params.id).subscribe(
       (datos:Departamento) => {
         this.depto = datos;
-
       }
     );
 

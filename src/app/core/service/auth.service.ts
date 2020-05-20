@@ -11,12 +11,12 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   
   
-  login(auth: string): Promise<string> {
+  login(auth: string): Observable<string> {
     return this.http.get(env.urlBase + "login", {
       headers: {
         Authorization: auth
       },
       responseType: 'text'
-    }).toPromise();
+    });//.toPromise();
   }
 }

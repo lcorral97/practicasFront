@@ -20,6 +20,10 @@ import { MainModule } from './modules/main/main.module';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { DepartamentoModule } from './modules/departamento/departamento.module';
 import { EmpleadoModule } from './modules/empleado/empleado.module';
+import { env } from 'src/environments/environment';
+import { MockInterceptorService } from './core/interceptor/mock-interceptor.service';
+
+export const isMock = env.mock;
 
 registerLocaleData(localeEs);
 @NgModule({
@@ -45,7 +49,7 @@ registerLocaleData(localeEs);
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
+      useClass: isMock ? MockInterceptorService :AuthInterceptorService,
       multi: true
     },
     {

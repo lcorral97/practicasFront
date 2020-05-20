@@ -31,6 +31,7 @@
     "jquery": "3.4.1",
     "json-loader": "^0.5.7",
     "ngx-avatar": "^3.7.0",
+    "ngx-bootstrap": "^5.6.1",
     "popper.js": "^1.16.1",
     "rb-letter-avatar": "^2.0.0",
     "rxjs": "~6.5.4",

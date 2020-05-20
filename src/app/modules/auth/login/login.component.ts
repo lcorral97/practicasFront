@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EmpleadoService } from 'src/app/core/service/empleado.service';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { first } from 'rxjs/operators';
+import { env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,16 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     let token: string;
-    localStorage.setItem("token", await this.authService.login("Basic " + btoa(this.registroForm.controls['ndi'].value + ":" + this.registroForm.controls['password'].value)));
+    if (env.mock) {
+      await this.authService.login("Basic " + btoa(this.registroForm.controls['ndi'].value + ":" + this.registroForm.controls['password'].value)).subscribe(
+        (datos: any) => {
+          token = datos;
+        }
+      )
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.setItem("token", await this.authService.login("Basic " + btoa(this.registroForm.controls['ndi'].value + ":" + this.registroForm.controls['password'].value)).toPromise());
+    }
     let e = new Empleado();
     this.empService.getEmpleado(this.registroForm.controls['ndi'].value).subscribe(
       (datos:Empleado) => {
